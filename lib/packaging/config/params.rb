@@ -65,6 +65,7 @@ module Pkg::Params
                   :metrics,
                   :metrics_url,
                   :name,
+                  :nexus_version,
                   :notify,
                   :project,
                   :origversion,
