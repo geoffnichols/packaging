@@ -273,6 +273,28 @@ module Pkg
           end
         end
       end
+
+      def deb_build_targets
+        if self.vanagon_project
+          self.deb_targets.split(' ')
+        else
+          self.cows.split(' ').map do |cow|
+            codename, arch = cow_to_codename_arch(cow)
+            "#{codename}-#{arch}"
+          end
+        end
+      end
+
+      def rpm_build_targets
+        if self.vanagon_project
+          self.rpm_targets.split(' ')
+        else
+          self.final_mocks.split(' ').map do |mock|
+            platform, version, arch = mock_to_dist_version_arch(mock)
+            "#{platform}-#{version}-#{arch}"
+          end
+        end
+      end
     end
   end
 end
